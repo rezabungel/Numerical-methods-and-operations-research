@@ -21,38 +21,13 @@ function lab3(a,b,n)
     Y_linear_grid(i)=my_func(X_linear_grid(i));
   endfor 
   
-  Y_interpolate_linear_grid=interpolate(X_linear_grid,Y_linear_grid,x);
-  
-  #Сhebyshev grid (n)
-  
-  X_cheb_grid=cheb_grid(a,b,n);
-  for i=1:numel(X_cheb_grid)
-    Y_cheb_grid(i)=my_func(X_cheb_grid(i));
-  endfor
-  
-  Y_interpolate_cheb_grid=interpolate(X_cheb_grid,Y_cheb_grid, x);
-  
-  figure(1)
-  plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_linear_grid,";y = exp(-abs(x)) - Linear grid;", x, Y_interpolate_cheb_grid,";y = exp(-abs(x)) - Сhebyshev grid;")
-  title ('y = exp(-abs(x)) -> -5:0.005:1 , n');
-  grid on
+  Y_interpolate_Linear_grid_n=interpolate(X_linear_grid,Y_linear_grid,x);
   
   #Error Linear grid (n)
   
-  for i=1:numel(Y_interpolate_linear_grid)
-    Error_interpolate_linear_grid(i)=abs(y(i)-Y_interpolate_linear_grid(i));
+  for i=1:numel(Y_interpolate_Linear_grid_n)
+    Error_interpolate_Linear_grid_n(i)=abs(y(i)-Y_interpolate_Linear_grid_n(i));
   endfor
-  
-  #Error Сhebyshev grid (n)
-  
-  for i=1:numel(Y_interpolate_cheb_grid)
-    Error_interpolate_cheb_grid(i)=abs(y(i)-Y_interpolate_cheb_grid(i));
-  endfor
-  
-  figure(2)
-  plot(x, log10(abs(Error_interpolate_linear_grid)),";Error interpolate linear grid;", x, log10(abs(Error_interpolate_cheb_grid)),";Error interpolate Сhebyshev grid;")
-  title ('Error interpolate linear grid and Error interpolate Сhebyshev grid -> -5:0.005:1 , n');
-  grid on
   
   n = n + 10;
   
@@ -63,7 +38,59 @@ function lab3(a,b,n)
     Y_linear_grid(i)=my_func(X_linear_grid(i));
   endfor 
   
-  Y_interpolate_Linear_grid=interpolate(X_linear_grid,Y_linear_grid,x);
+  Y_interpolate_Linear_grid_n10=interpolate(X_linear_grid,Y_linear_grid,x);
+  
+  #Error interpolate Linear grid (n + 10)
+  
+  for i=1:numel(Y_interpolate_Linear_grid_n10)
+    Error_interpolate_Linear_grid_n10(i)=abs(y(i)-Y_interpolate_Linear_grid_n10(i));
+  endfor
+  
+  n = n + 5; # n=n-10+15 
+  
+  #Linear grid (n + 15)
+ 
+  X_linear_grid=linear_grid(a,b,n);
+  for i=1:numel(X_linear_grid)
+    Y_linear_grid(i)=my_func(X_linear_grid(i));
+  endfor 
+  
+  Y_interpolate_Linear_grid_n15=interpolate(X_linear_grid,Y_linear_grid,x);
+  
+  #Error interpolate Linear grid (n + 15)
+  
+  for i=1:numel(Y_interpolate_Linear_grid_n15)
+    Error_interpolate_Linear_grid_n15(i)=abs(y(i)-Y_interpolate_Linear_grid_n15(i));
+  endfor
+  
+  figure(1)
+  plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_Linear_grid_n,";y = exp(-abs(x)) - Linear grid -> (n);", x, Y_interpolate_Linear_grid_n10,";y = exp(-abs(x)) - Linear grid -> (n + 10);", x, Y_interpolate_Linear_grid_n15,";y = exp(-abs(x)) - Linear grid -> (n + 15);")
+  title ('y = exp(-abs(x)) -> Linear grid -> -5:0.005:1 ,n, n+10, n+15');
+  grid on
+  
+  figure(2)
+  plot(x, log10(abs(Error_interpolate_Linear_grid_n)),";Error interpolate Linear grid -> (n);", x, log10(abs(Error_interpolate_Linear_grid_n10)),";Error interpolate Linear grid -> (n + 10);", x, log10(abs(Error_interpolate_Linear_grid_n15)),";Error interpolate Linear grid -> (n + 15);")
+  title ('Error interpolate Linear grid for n, n+10, n+15 -> -5:0.005:1');
+  grid on
+  
+  n = n - 15;
+  
+  #Сhebyshev grid (n)
+  
+  X_cheb_grid=cheb_grid(a,b,n);
+  for i=1:numel(X_cheb_grid)
+    Y_cheb_grid(i)=my_func(X_cheb_grid(i));
+  endfor
+  
+  Y_interpolate_cheb_grid_n=interpolate(X_cheb_grid,Y_cheb_grid, x);
+  
+  #Error Сhebyshev grid (n)
+  
+  for i=1:numel(Y_interpolate_cheb_grid_n)
+    Error_interpolate_cheb_grid_n(i)=abs(y(i)-Y_interpolate_cheb_grid_n(i));
+  endfor
+  
+  n = n + 10;
   
   #Сhebyshev grid (n + 10)
   
@@ -72,29 +99,42 @@ function lab3(a,b,n)
     Y_cheb_grid(i)=my_func(X_cheb_grid(i));
   endfor
   
-  Y_interpolate_cheb_grid=interpolate(X_cheb_grid,Y_cheb_grid, x);
+  Y_interpolate_cheb_grid_n10=interpolate(X_cheb_grid,Y_cheb_grid, x);
+  
+  #Error Сhebyshev grid (n + 10)
+  
+  for i=1:numel(Y_interpolate_cheb_grid_n10)
+    Error_interpolate_cheb_grid_n10(i)=abs(y(i)-Y_interpolate_cheb_grid_n10(i));
+  endfor
+  
+  n = n + 5; # n=n-10+15
+  
+  #Сhebyshev grid (n + 15)
+  
+  X_cheb_grid=cheb_grid(a,b,n);
+  for i=1:numel(X_cheb_grid)
+    Y_cheb_grid(i)=my_func(X_cheb_grid(i));
+  endfor
+  
+  Y_interpolate_cheb_grid_n15=interpolate(X_cheb_grid,Y_cheb_grid, x);
+  
+  #Error Сhebyshev grid (n + 15)
+  
+  for i=1:numel(Y_interpolate_cheb_grid_n15)
+    Error_interpolate_cheb_grid_n15(i)=abs(y(i)-Y_interpolate_cheb_grid_n15(i));
+  endfor
   
   figure(3)
-  plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_Linear_grid,";y = exp(-abs(x)) - Linear grid;", x, Y_interpolate_cheb_grid,";y = exp(-abs(x)) - Сhebyshev grid;")
-  title ('y = exp(-abs(x)) -> -5:0.005:1 , n + 10');
+  plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_cheb_grid_n,";y = exp(-abs(x)) - Сhebyshev grid -> (n);", x, Y_interpolate_cheb_grid_n10,";y = exp(-abs(x)) - Сhebyshev grid -> (n + 10);", x, Y_interpolate_cheb_grid_n15,";y = exp(-abs(x)) - Сhebyshev grid -> (n + 15);")
+  title ('y = exp(-abs(x)) -> Сhebyshev grid -> -5:0.005:1 ,n, n+10, n+15');
   grid on
-  
-  #Error interpolate Linear grid (n + 10)
-  
-  for i=1:numel(Y_interpolate_linear_grid)
-    Error_interpolate_linear_grid(i)=abs(y(i)-Y_interpolate_linear_grid(i));
-  endfor
-  
-  #Error interpolate Сhebyshev grid (n + 10)
-  
-  for i=1:numel(Y_interpolate_cheb_grid)
-    Error_interpolate_cheb_grid(i)=abs(y(i)-Y_interpolate_cheb_grid(i));
-  endfor
   
   figure(4)
-  plot(x, log10(abs(Error_interpolate_linear_grid)),";Error interpolate linear grid;", x, log10(abs(Error_interpolate_cheb_grid)),";Error interpolate Сhebyshev grid;")
-  title ('Error interpolate linear grid and Error interpolate Сhebyshev grid -> -5:0.005:1, n + 10');
+  plot(x, log10(abs(Error_interpolate_cheb_grid_n)),";Error interpolate Сhebyshev grid -> (n);", x, log10(abs(Error_interpolate_cheb_grid_n10)),";Error interpolate Сhebyshev grid -> (n + 10);", x, log10(abs(Error_interpolate_cheb_grid_n15)),";Error interpolate Сhebyshev grid -> (n + 15);")
+  title ('Error interpolate Сhebyshev grid for n, n+10, n+15 -> -5:0.005:1');
   grid on
+  
+  n = n - 15;
   
   #MAX Error interpolate Linear grid (n = [2:30])
   for n = 2:30
