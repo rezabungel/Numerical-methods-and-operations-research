@@ -1,5 +1,5 @@
 #p1 - a point near the root
-#p2 - a point near the root
+#p2 - b point near the root
 
 #The number for this graph should not exceed -2 and 3.
 function [error, nevyazka] = secant(p1,p2)
