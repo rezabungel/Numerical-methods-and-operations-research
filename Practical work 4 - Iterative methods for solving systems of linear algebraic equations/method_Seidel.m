@@ -2,23 +2,23 @@
 # esp - епсилон (точность).
 
 # Функция возвращает:
-#   root = решение системы линейных алгебраический уравнений.
-#   error_p2_norm - ошибка в решение от номера итерации, вычисленная по p2 матричной норме.                     ??????????????????????????????????
-#   error_Frobenius_norm - ошибка в решение от номера итерации, вычисленная по матричной норме Фробениуса.      ??????????????????????????????????
+#   root = решение системы линейных алгебраических уравнений.
+#   error - ошибка в решении от номера итерации, вычисленная по p2 векторной норме и матричной норме Фробениуса.
 #   nevyazka - невязка в решение от номера итерации, вычисленная с помощью максимальной или бесконечной нормы вектора.
+#   root_changes - матрица, хранящая корни полученные на каждом шаге итерации.
 
-function [root, error_p2_norm, error_Frobenius_norm, nevyazka] = method_Seidel(A, esp)
+function [root, error, nevyazka, root_changes] = method_Seidel(A, esp)
   
   disp("\nМетод Зейделя")
   
-  b=zeros(numel(A(1,:)), 1) + 1; # numel(A(1,:)) - вернет порядок матрицы A. (Матрица A - квадратная).
+  b = zeros(numel(A(1,:)), 1) + 1; # numel(A(1,:)) - вернет порядок матрицы A. (Матрица A - квадратная).
   B = inv(diag(diag(A)))*(diag(diag(A))-A); # Бездиагональная матрица, элементы которой с минусом и в каждой строке делятся на соответсвующий диагональный элемент матрицы A.
   
-  if (matrix_p2_norm(B) < 1) & (matrix_Frobenius_norm(B) < 1) # Достаточно проверить одну любую норму, я проверяю две.
+  if (matrix_Frobenius_norm(B) < 1)
     disp("Норма матрицы B < 1, тогда решение системы существует и единственно.\n")
   else
-    disp("Норма матрицы B >= 1, нужна другая матрица.\n")    
-    ### ЧТО ТОГДА???????? РЕШЕНИЕ НЕ ЕДИНСТВЕННО ИЛИ ЕГО НЕТ ИЛИ НЕЛЬЗЯ ВЫЧИСЛИТЬ ДАННЫМ СПОСОБОМ
+    disp("Норма матрицы B >= 1, cходимость не гарантирована.\n")    
+    # Сходимость не гарантирована. (Кажется, там было не гарантировано).
   endif
   
   B1=tril(B); # Бездиагональная нижняя треугольная матрица, элементы которой с минусом и в каждой строке делятся на соответсвующий диагональный элемент матрицы A.
@@ -27,6 +27,7 @@ function [root, error_p2_norm, error_Frobenius_norm, nevyazka] = method_Seidel(A
   
   X_k = zeros (numel(A(1,:)),1); # Вектор-столбец неизвестных на k-ой итерации.
   X_Kplus1 = zeros (numel(A(1,:)),1); # Вектор-столбец неизвестных на (k+1)-ой итерации.
+  root_changes = X_k'; # Вектор-столбец неизвестных на k-ой итерации транспонируем и получаем вектор-строку.
   
   k=0; # Количество итераций.
 
@@ -37,18 +38,21 @@ function [root, error_p2_norm, error_Frobenius_norm, nevyazka] = method_Seidel(A
     endfor
     k=k+1;
     
-    error_p2_norm(k) = (matrix_p2_norm(B2)/(1-matrix_p2_norm(B)))*vector_p_infinity_norm(X_Kplus1-X_k);
-    error_Frobenius_norm(k) = (matrix_Frobenius_norm(B2)/(1-matrix_Frobenius_norm(B)))*vector_p_infinity_norm(X_Kplus1-X_k);
+    error(k) = (matrix_Frobenius_norm(B2)/(1-matrix_Frobenius_norm(B)))*vector_p2_norm(X_Kplus1-X_k);
     nevyazka(k) = matrix_p2_norm(A*X_Kplus1-b);    
     
-    if (esp >= vector_p_infinity_norm(X_Kplus1-X_k))
+    for i = 1:numel(root_changes(1,:))
+      root_changes(k+1, i) = X_Kplus1(i);
+    endfor
+    
+    if (esp >= vector_p2_norm(X_Kplus1-X_k))
       break
     endif
     
     X_k=X_Kplus1;
     
   endwhile
-  
+
   root = X_Kplus1;
   
   endfunction

@@ -5,7 +5,7 @@
 #   Начально приближение x возьмем равным 0. (Элементы вектора-столбца неизвестных будут равны 0 в самом начале).
 #   b - задается единичным вектором.
 
-# Реализовать решение с помощью Метода Зейделя; 2-норма и норма Фронбениуса, eps = 10^(-8)
+# Реализовать решение с помощью Метода Зейделя; Для оценки погрешности использовать векторную норма p2, норму Фронбениуса для матрицы, eps = 10^(-8)
 # По результатам вычислений построить графики зависимости точности решения и невязки от номера итерации.
 # Для анализа использовать указанные нормы.
 
@@ -20,11 +20,17 @@ function lab4(m)
   A = A_matrix(m)
   esp = 10^(-8)
   
-  [root, error_p2_norm, error_Frobenius_norm, nevyazka] = method_Seidel(A, eps);
+  [root, error, nevyazka, root_changes] = method_Seidel(A, eps);
   
   figure(1)
-  plot (1:numel(error_p2_norm), log10(abs(error_p2_norm)),";error through p2 norm;",1:numel(error_Frobenius_norm), log10(abs(error_Frobenius_norm)),";error through Frobenius norm;", 1:numel(nevyazka), log10(abs(nevyazka)),";nevyazka;")
+  plot (1:numel(error), log10(abs(error)),";error through Frobenius norm and vector p2 norm;", 1:numel(nevyazka), log10(abs(nevyazka)),";nevyazka;")
   title ('График зависимости модуля абсолютной ошибки от номера шага.');
+  grid on
+  
+  v=1:numel(root_changes(:,1));
+  figure(2)
+  plot (v, root_changes)
+  title ('График изменения корней системы линейных алгебраических уравнений, полученные в процессе вычисления.');
   grid on
   
   disp ("Решение системы линейных алгебраических уравнений.")
@@ -32,6 +38,6 @@ function lab4(m)
   disp (root)
   disp ("\nКоличество итераций.")
   disp ("Iterations:")
-  disp (numel(error_p2_norm))
+  disp (numel(error))
   
   endfunction
