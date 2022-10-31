@@ -24,6 +24,8 @@ Practical work:
     2. [A graph of the dependence of the absolute error modulus between the exact values of I and the corresponding value of I(0) extrapolated by Romberg](#Graph_5-2)
     3. [Values of calculated integrals at different steps](#Graph_5-3)
 6. [Solving ordinary differential equations](#Practical_work6)
+    1. [Graph of the analytical solution of the second-order differential equation and the solution obtained by the Euler-Cauchy method for different steps. The graphs are built on the interval [x, xEND]](#Graph_6-1)
+    2. [A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value](#Graph_6-2)
 
 ## <a name="Practical_work1">Practical work 1 - Calculation errors</a> 
 
@@ -81,3 +83,9 @@ Practical work:
 ![3. Values of calculated integrals at different steps](./Practical%20work%205%20-%20Calculation%20of%20integrals/Result%20graph/3.%20Values%20of%20calculated%20integrals%20at%20different%20steps.png)
 
 ## <a name="Practical_work6">Practical work 6 - Solving ordinary differential equations</a>   
+
+### <a name="Graph_6-1">1. Graph of the analytical solution of the second-order differential equation and the solution obtained by the Euler-Cauchy method for different steps. The graphs are built on the interval [x, xEND]</a>
+![1. Graph of the analytical solution of the second-order differential equation and the solution obtained by the Euler-Cauchy method for different steps. The graphs are built on the interval [x, xEND]](./Practical%20work%206%20-%20Solving%20ordinary%20differential%20equations/Result%20graph/1.%20Graph%20of%20the%20analytical%20solution%20of%20the%20second-order%20differential%20equation%20and%20the%20solution%20obtained%20by%20the%20Euler-Cauchy%20method%20for%20different%20steps.%20The%20graphs%20are%20built%20on%20the%20interval%20%5Bx%2C%20xEND%5D.png)
+
+### <a name="Graph_6-2">2. A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value</a>
+![2. A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value](./Practical%20work%206%20-%20Solving%20ordinary%20differential%20equations/Result%20graph/2.%20A%20graph%20of%20the%20dependence%20of%20the%20absolute%20error%20modulus%20between%20the%20value%20obtained%20using%20the%20Euler-Cauchy%20method%20and%20the%20analytical%20value.png)

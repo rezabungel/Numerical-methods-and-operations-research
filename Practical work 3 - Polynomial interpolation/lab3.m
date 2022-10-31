@@ -66,13 +66,13 @@ function lab3(a,b,n)
   figure(1)
   plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_Linear_grid_n,";y = exp(-abs(x)) - Linear grid -> (n);", x, Y_interpolate_Linear_grid_n10,";y = exp(-abs(x)) - Linear grid -> (n + 10);", x, Y_interpolate_Linear_grid_n15,";y = exp(-abs(x)) - Linear grid -> (n + 15);")
   title ('y = exp(-abs(x)) -> Linear grid -> -5:0.005:1 ,n, n+10, n+15');
-  legend ("location", "northwest"); # Вывод легенды на графике в левом верхнем углу, для лучшей читаемости.
+  legend ("location", "northwest"); # Вывод легенды на графике в левом верхнем углу для лучшей читаемости.
   grid on
   
   figure(2)
   plot(x, log10(abs(Error_interpolate_Linear_grid_n)),";Error interpolate Linear grid -> (n);", x, log10(abs(Error_interpolate_Linear_grid_n10)),";Error interpolate Linear grid -> (n + 10);", x, log10(abs(Error_interpolate_Linear_grid_n15)),";Error interpolate Linear grid -> (n + 15);")
   title ('Error interpolate Linear grid for n, n+10, n+15 -> -5:0.005:1');
-  legend("location", "southeast", "fontsize", 8.5); # Вывод легенды на графике в правом нижнем углу, для лучшей читаемости.
+  legend("location", "southeast", "fontsize", 8.5); # Вывод легенды на графике в правом нижнем углу для лучшей читаемости.
   grid on
   
   n = n - 15;
@@ -129,13 +129,13 @@ function lab3(a,b,n)
   figure(3)
   plot(x, y,";y = exp(-abs(x));", x, Y_interpolate_cheb_grid_n,";y = exp(-abs(x)) - Сhebyshev grid -> (n);", x, Y_interpolate_cheb_grid_n10,";y = exp(-abs(x)) - Сhebyshev grid -> (n + 10);", x, Y_interpolate_cheb_grid_n15,";y = exp(-abs(x)) - Сhebyshev grid -> (n + 15);")
   title ('y = exp(-abs(x)) -> Сhebyshev grid -> -5:0.005:1 ,n, n+10, n+15');
-  legend ("location", "northwest"); # Вывод легенды на графике в левом верхнем углу, для лучшей читаемости.
+  legend ("location", "northwest"); # Вывод легенды на графике в левом верхнем углу для лучшей читаемости.
   grid on
   
   figure(4)
   plot(x, log10(abs(Error_interpolate_cheb_grid_n)),";Error interpolate Сhebyshev grid -> (n);", x, log10(abs(Error_interpolate_cheb_grid_n10)),";Error interpolate Сhebyshev grid -> (n + 10);", x, log10(abs(Error_interpolate_cheb_grid_n15)),";Error interpolate Сhebyshev grid -> (n + 15);")
   title ('Error interpolate Сhebyshev grid for n, n+10, n+15 -> -5:0.005:1');
-  legend("location", "southwest", "fontsize", 8); # Вывод легенды на графике в левом нижнем углу, для лучшей читаемости.
+  legend("location", "southwest", "fontsize", 8); # Вывод легенды на графике в левом нижнем углу для лучшей читаемости.
   grid on
   
   n = n - 15;
