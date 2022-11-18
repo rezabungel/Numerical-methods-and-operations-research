@@ -6,5 +6,5 @@ function result = f(x,y)
   y1=y(1);
   y2=y(2);
   result(1)=y2;
-  result(2)=sin(x)-y1;
+  result(2)=sin(x)-y2;
   endfunction
