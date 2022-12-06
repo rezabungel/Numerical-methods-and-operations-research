@@ -26,6 +26,9 @@ Practical work:
 6. [Solving ordinary differential equations](#Practical_work6)
     1. [Graph of the analytical solution of the second-order differential equation and the solution obtained by the Euler-Cauchy method for different steps. The graphs are built on the interval [x, xEND]](#Graph_6-1)
     2. [A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value](#Graph_6-2)
+7. [Solving systems of linear equations Gauss method](#Practical_work7)
+    1. [Solving systems of linear equations by the Gauss method without selecting the main element](#Graph_7-1)
+    2. [Solving systems of linear equations by the Gauss method with the choice of the main element by column](#Graph_7-2)
 
 ## <a name="Practical_work1">Practical work 1 - Calculation errors</a> 
 
@@ -89,3 +92,11 @@ Practical work:
 
 ### <a name="Graph_6-2">2. A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value</a>
 ![2. A graph of the dependence of the absolute error modulus between the value obtained using the Euler-Cauchy method and the analytical value](./Practical%20work%206%20-%20Solving%20ordinary%20differential%20equations/Result%20graph/2.%20A%20graph%20of%20the%20dependence%20of%20the%20absolute%20error%20modulus%20between%20the%20value%20obtained%20using%20the%20Euler-Cauchy%20method%20and%20the%20analytical%20value.png)
+
+## <a name="Practical_work7">Practical work 7 - Solving systems of linear equations Gauss method</a>   
+
+### <a name="Graph_7-1">1. Solving systems of linear equations by the Gauss method without selecting the main element</a>
+![1. Solving systems of linear equations by the Gauss method without selecting the main element](./Practical%20work%207%20-%20Solving%20systems%20of%20linear%20equations%20Gauss%20method/Result/1.%20Solving%20systems%20of%20linear%20equations%20by%20the%20Gauss%20method%20without%20selecting%20the%20main%20element.png)
+
+### <a name="Graph_7-2">2. Solving systems of linear equations by the Gauss method with the choice of the main element by column</a>
+![2. Solving systems of linear equations by the Gauss method with the choice of the main element by column](./Practical%20work%207%20-%20Solving%20systems%20of%20linear%20equations%20Gauss%20method/Result/2.%20Solving%20systems%20of%20linear%20equations%20by%20the%20Gauss%20method%20with%20the%20choice%20of%20the%20main%20element%20by%20column.png)
